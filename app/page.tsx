@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button"
-import { TopNav } from "@/components/top-nav"
+import { AppSidebar } from "@/components/app-sidebar"
 
 export default function DashboardPage() {
   return (
-    <div className="flex h-screen flex-col bg-background">
-      <TopNav />
-    </div>
+    <main className="flex h-screen flex-col bg-background">
+      <AppSidebar />
+    </main>
   )
 }
