@@ -30,8 +30,10 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <TopNav />
-          {children}
+          <div className="flex h-screen flex-col bg-background">
+            <TopNav />
+            <div className="flex flex-1 overflow-hidden">{children}</div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
