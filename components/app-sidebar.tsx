@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { usePathname } from "next/navigation"
 import {
   LayoutGrid,
   Video,
@@ -12,27 +13,28 @@ import {
   LogOut,
   CircleHelp,
 } from "lucide-react"
+import Link from "next/link"
 
 const navItems = [
-  { label: "Dashboard", icon: LayoutGrid },
-  { label: "Cameras", icon: Video },
-  { label: "Alerts", icon: TriangleAlert, badge: 5 }, //set badge number dynamically
-  { label: "Reports", icon: BarChart3 },
-  { label: "Settings", icon: Settings },
+  { label: "Dashboard", icon: LayoutGrid, href: "/" },
+  { label: "Cameras", icon: Video, href: "/cameras" },
+  { label: "Alerts", icon: TriangleAlert, badge: 5, href: "/alerts" }, //set badge number dynamically
+  { label: "Reports", icon: BarChart3, href: "/reports" },
+  { label: "Settings", icon: Settings, href: "/settings" },
 ]
 
 export function AppSidebar() {
-  const [active, setActive] = useState("Dashboard")
+  const pathname = usePathname();
 
   return (
     <aside className="flex h-full w-60 shrink-0 flex-col justify-between border-sidebar-border bg-sidebar">
       <nav className="space-y-1 px-3">
-        {navItems.map(({ label, icon: Icon, badge }) => {
-          const isActive = active === label
+        {navItems.map(({ label, icon: Icon, badge, href }) => {
+          const isActive = pathname === href;
           return (
-            <button
+            <Link
               key={label}
-              onClick={() => setActive(label)}
+              href={href}
               className={cn(
                 "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent/60",
                 isActive &&
@@ -47,7 +49,7 @@ export function AppSidebar() {
                   {badge}
                 </Badge>
               )}
-            </button>
+            </Link>
           )
         })}
       </nav>
