@@ -1,5 +1,5 @@
 import { feeds } from "@/lib/data/feed"
-import Image from "next/image"
+import { LiveFeed } from "./live-feed"
 import { Badge } from "./ui/badge"
 
 export function CameraGrid() {
@@ -10,14 +10,7 @@ export function CameraGrid() {
           key={feed.id}
           className="relative aspect-video overflow-hidden rounded-lg bg-black shadow-md"
         >
-          <Image
-            src={feed.src}
-            alt={feed.name}
-            fill
-            priority={index < 2}
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover opacity-90"
-          />
+          <LiveFeed feed={feed} eager={index < 2}/>
 
           {/* Top Overlay */}
           <div className="absolute inset-x-0 top-0 flex items-center gap-2 bg-linear-to-b from-black/70 to-transparent p-3">
