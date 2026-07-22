@@ -18,7 +18,7 @@ import Link from "next/link"
 const navItems = [
   { label: "Dashboard", icon: LayoutGrid, href: "/" },
   { label: "Cameras", icon: Video, href: "/cameras" },
-  { label: "Alerts", icon: TriangleAlert, badge: 5, href: "/alerts" }, //set badge number dynamically
+  { label: "Alerts", icon: TriangleAlert, badge: 5, href: "/alerts" }, 
   { label: "Reports", icon: BarChart3, href: "/reports" },
   { label: "Settings", icon: Settings, href: "/settings" },
 ]
@@ -30,7 +30,7 @@ export function AppSidebar() {
     <aside className="flex h-full w-60 shrink-0 flex-col justify-between border-sidebar-border bg-sidebar">
       <nav className="space-y-1 px-3">
         {navItems.map(({ label, icon: Icon, badge, href }) => {
-          const isActive = pathname === href;
+          const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
           return (
             <Link
               key={label}
