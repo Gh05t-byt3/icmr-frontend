@@ -1,13 +1,15 @@
 import { feeds } from "@/lib/data/feed"
 import { LiveFeed } from "./live-feed"
 import { Badge } from "./ui/badge"
+import Link from "next/link"
 
 export function CameraGrid() {
   return (
     <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
       {feeds.map((feed, index) => (
-        <div
+        <Link
           key={feed.id}
+          href={`/cameras/${feed.slug}`}
           className="relative aspect-video overflow-hidden rounded-lg bg-black shadow-md"
         >
           <LiveFeed feed={feed} eager={index < 2}/>
@@ -36,7 +38,7 @@ export function CameraGrid() {
               {feed.confidence}
             </span>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )
