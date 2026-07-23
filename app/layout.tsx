@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { TopNav } from "@/components/top-nav"
 import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider } from "@/components/sidebar-context"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -31,13 +32,15 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <div className="flex h-screen flex-col bg-background">
-            <TopNav />
-            <div className="flex flex-1 overflow-hidden">
-              <AppSidebar />
-              <main className="flex-1 overflow-y-auto p-6">{children}</main>
+          <SidebarProvider>
+            <div className="flex h-screen flex-col bg-background">
+              <TopNav />
+              <div className="flex flex-1 overflow-hidden">
+                <AppSidebar />
+                <main className="flex-1 overflow-y-auto p-6">{children}</main>
+              </div>
             </div>
-          </div>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
